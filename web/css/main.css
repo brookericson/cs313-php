@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+
+html {
+	height: 100%;
+	background: linear-gradient(to bottom, slategray , whitesmoke);
+}
+
+body {
+	background-color: whitesmoke;
+	color: slategray;
+	font-family: 'helvetica', sans-serif;
+	width: 100%;
+	max-width: 1024px;
+	margin: auto;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Open Sans', sans-serif;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 0 25px;
+}
+
+nav ul{
+	display: flex;
+}
+
+nav ul li {
+	padding: 10px;
+	list-style-type: none;
+}
+
+nav a:link, nav a:visited {
+	text-decoration: none;
+	color: slategray;
+}
+
+nav a:hover, nav a:active {
+	color: darkturquoise;
+}
+
+.banner {
+	width: 100%;
+	background-image: url(../images/mountains.jpg);
+	height: 200px;
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	align-items: flex-end;
+	
+}
+
+.banner h1 {
+		padding: 0 25px; 
+		margin-bottom: 10px;
+		font-size: 3em;
+		color: whitesmoke;
+	    text-shadow: 2px 2px 5px black;
+}
+
+.interests {
+	padding: 25px;
+}
+
+#assignments-main .banner {
+	background-image: url(../images/web.jpg)
+}
+
+body, main, p {
+	height: 100%;
+	margin-bottom:0;
+}

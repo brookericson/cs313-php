@@ -1,0 +1,17 @@
+div {
+	font-size: 2em;
+}
+
+.container-fluid > div {
+	margin: 15px 0;
+	background: lightgray;
+}
+
+#buttons-box {
+	margin: 0 10px;
+}
+
+div:hover {
+	font-weight: bolder;
+}
+
