@@ -1,81 +1,74 @@
-<?php session_start(); ?>
-<!doctype html>
-<html>
-<head>
-<title>Grocery Items</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php 
 
-<h4>Choose items for your grocery cart</h4>
+session_start();
 
-<form action="cart.html" method="POST">
+$_SESSION['items'];
 
-<fieldset>
-	<legend>Produce</legend>
+$_SESSION["name"] = array(
+                                                    "apple" => "Red Delicious Apple",
+                                                    "banana" => "Banana",
+                                                    "tomato" => "Tomato",
+                                                    "potato" => "Russet Potato",
+                                                    "milk" => "1 gal. 2% Milk",
+                                                    "cheese" => "8 oz Cheddar Cheese",
+                                                    "bread" => "Whole Wheat Loaf of Bread",
+                                                    "rice" => "18 oz White Rice"
+                                              );
 
-	<div>
-		<input type="checkbox" name="item[]" value="Red Delicious Apples"><label>Red Delicious Apples</label>
-	</div>
+$_SESSION["price"] = array(
+                                                    "apple" => 0.75,
+                                                    "banana" => 0.35,
+                                                    "tomato" => 0.35,
+                                                    "potato" => 0.30,
+                                                    "milk" => 2.25,
+                                                    "cheese" => 2.40,
+                                                    "bread" => 2.20,
+                                                    "rice" => 1.00
+                                              );
 
-	<div>
-	<input type="checkbox" name="item[]" value="Bananas"><label>Bananas</label>
-	</div>
+$action = filter_input(INPUT_POST, 'action');
+if ($action == NULL){
+  $action = filter_input(INPUT_GET, 'action');
+if($action == NULL){
+  $action = 'home';
+  }
+}
 
-	<div>
-	   <input type="checkbox" name="item[]" value="Peaches"><label>Peaches</label>
-	</div>
-	
-</fieldset>
-	
-<fieldset>
-	<legend>Vegetables</legend>
-	<div>
-	   <input type="checkbox" name="item[]" value="Tomatoes"><label>Tomatoes</label>
-	</div>
-
-	<div>
-	   <input type="checkbox" name="item[]" value="Russet Potatoes"><label>Potatoes</label>
-	</div>
-
-	<div>
-	   <input type="checkbox" name="item[]" value="Green Bell Peppers"><label>Green Bell Peppers</label>
-	</div>
-</fieldset>
-	
-<fieldset>
-	<legend>Dairy</legend>
-	<div>
-	   <input type="checkbox" name="item[]" value="milk"><label>Skim Milk</label>
-	</div>
-
-	<div>
-	   <input type="checkbox" name="item[]" value="chocolate_milk"><label>Chocolate Milk</label>
-	</div>
-
-	<div>
-	   <input type="checkbox" name="item[]" value="Cheddar Cheese"><label>Cheddar Cheese</label>
-	</div>
-</fieldset>
-	
-<fieldset>
-	<legend>Grains</legend>
-	<div>
-	   <input type="checkbox" name="item[]" value="bread"><label>1 Loaf Whole Wheat Bread</label>
-	</div>
-
-	<div>
-	   <input type="checkbox" name="item[]" value="rice"><label>Rice</label>
-	</div>
-
-	<div>
-	   <input type="checkbox" name="item[]" value="pasta"><label>Pasta Noodles</label>
-	</div>
-</fieldset>
-
-    <input type="submit" value="View My Cart">
-
-</form>
-
-</body>
-</html>
+switch ($action){
+  case 'home':
+    include 'items.php';
+    break;
+  case 'addItem':
+      $items = $_POST['name'];
+      foreach ($items as $item){
+        array_push($_SESSION['items'], $item);
+      }
+//      var_dump($_SESSION['items']);
+      $_SESSION['message'] = '<p>Your items have been added</p>';
+      include 'items.php';
+      break;
+  case 'showCart': 
+      include 'shopping_cart.php';
+      break;
+  case 'deleteItem':
+      $index = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_NUMBER_FLOAT);
+      $index2 = 1 + $index;
+      array_splice($_SESSION['items'], $index, $index2);
+      include 'shopping_cart.php';
+      break;
+  case 'checkOut':
+      include 'check_out.php';
+      break;
+  case 'makePurchase':
+      $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+      $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
+      $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
+      $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING);
+      $state = filter_input(INPUT_POST, 'state', FILTER_SANITIZE_STRING);
+      $zipcode = filter_input(INPUT_POST, 'zipcode', FILTER_SANITIZE_NUMBER_INT);
+      $_SESSION['display'] = "<h4>$firstname, your order is complete!</h4>"
+              . "<p>Your order will be sent to:</br>"
+              . "$address, $city, $state $zipcode<p>";
+      include 'confirmation.php';
+      break;
+}
