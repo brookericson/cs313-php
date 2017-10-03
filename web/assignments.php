@@ -19,7 +19,7 @@
 		<main id="assignments-main">
 				<div class="banner"><h1>Assignments</h1></div>
 				<div class="interests">
-					<a href="/shopping_Cart/">Shopping Cart Assignment</a>
+					<a href="/shopping_cart/index.php">Shopping Cart Assignment</a>
 				</div>
 		</main> 
     </body>
