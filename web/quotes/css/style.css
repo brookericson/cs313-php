@@ -1,0 +1,48 @@
+html {
+	height: 100%
+}
+
+body {
+	height: 100%;
+	font-family: 'Arial', sans-serif;
+}
+
+header nav ul li {
+	padding-left: 25px;
+}
+
+main {
+	height: 100%;
+	margin: 20px;
+}
+
+.main-quote {
+	font-size: 2em;
+	width: 90%;
+	margin: 40px auto;
+	padding: 30px;
+	background: whitesmoke;
+	border: 1px solid slategray;
+	border-radius: 10px;
+}
+
+.main-quote span {
+	font-size: .4em;
+}
+
+.quote {
+	background: whitesmoke;
+	margin: 20px;
+	padding: 30px;
+	border: 1px solid slategray;
+	border-radius: 10px;
+	font-size: 2em;
+}
+a:link {
+	text-decoration: none;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
