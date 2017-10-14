@@ -3,7 +3,6 @@
 session_start();
 
 $_SESSION['items'];
-$itemsArray = array();
 
 $_SESSION["name"] = array(
                                                     "apple" => "Red Delicious Apple",
@@ -42,9 +41,9 @@ switch ($action){
   case 'addItem':
       $items = $_POST['name'];
       foreach ($items as $item){
-      array_push($itemsArray, $item);
+        array_push($_SESSION['items'], $item);
       }
-	  $_SESSION['items'] = $itemsArray;
+//      var_dump($_SESSION['items']);
       $_SESSION['message'] = '<p>Your items have been added</p>';
       include 'items.php';
       break;

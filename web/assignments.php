@@ -17,17 +17,12 @@
 			</nav>
 		</header>
 		<main id="assignments-main">
-				<div class="banner"><h1>Assignments</h1></div>
-<<<<<<< HEAD
+			<div class="banner"></div><h1>Assignments</h1>
+			
 					<ul>
 					<li><a href="shopping_cart/index.php">Shopping Cart Assignment</a></li>
 					<li><a href="quotes/index.php">05 Prove: Assignment-PHP Data Access</a></li>
 					</ul>
-=======
-				<div class="interests">
-					<a href="/shopping_cart/index.php">Shopping Cart Assignment</a>
-				</div>
->>>>>>> c95e1f1e3217e00af7184a12b492526e8c663f09
 		</main> 
     </body>
 </html>
