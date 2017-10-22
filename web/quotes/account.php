@@ -10,19 +10,24 @@
 		<main>
 			<div>
 				<h1>Account Information:</h1>
-				<?php 
-				foreach ($db->query('SELECT * FROM public.user') as $user){
-				echo "<p>User Name: ";
-				echo $user['user_name'];
+				<?php if(isset($_SESSION['userData'])) {
+				echo "<p>Name: ";
+				echo $_SESSION['userData']['user_name'];
 				echo "</p>";
 				echo "<p>User Type: ";
-				echo $user['type'];
+				echo $_SESSION['userData']['type'];
+				echo '</p>';
+				echo "<p>Email: ";
+				echo $_SESSION['userData']['email'];
 				echo "</p>";
-				}	 ?>
+				} ?>
 			</div>
-			<div>
-				<a href="index.php?action=manageQuotes" class="btn btn-primary">Manage Quotes</a>
-			</div>
+			<?php if($_SESSION['userData']['type'] == 1){
+				echo '<div>';
+				echo '<a href="index.php?action=manageQuotes" class="btn btn-primary">Manage Quotes</a>';
+				echo '</div>';
+			}	
+			?>
 		</main>
 		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
