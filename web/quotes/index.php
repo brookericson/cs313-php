@@ -3,19 +3,11 @@
 session_start();
 
 // Get the quotes model for use as needed
+require_once 'connect.php';
+// Get the quotes model for use as needed
 require_once 'quotes_model.php';
 
-try
-	{
-	  $user = 'postgres';
-	  $password = 'Flatirons11';
-	  $db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, $password);
-	}
-catch (PDOException $ex)
-	{
-	  echo 'Error!: ' . $ex->getMessage();
-	  die();
-	}
+$db = get_db();
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL){
@@ -42,7 +34,7 @@ switch ($action){
 	  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 	  $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 	  if (empty($email) || empty($password)) {
-		  $message = '<p>Please provide a valid email address and password.</p>';
+		  $_SESSION['message'] = '<p>Please provide a valid email address and password.</p>';
 		  include 'login.php';
 		  exit;
       }
@@ -64,13 +56,13 @@ switch ($action){
 	  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 	  $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 	  if (empty($email) || empty($password) || empty($username)) {
-		  $message = '<p>Please fill in each input field.</p>';
+		  $$_SESSION['message'] = '<p>Please fill in each input field.</p>';
 		  include 'signup.php';
 		  exit;
       }
 	  $rowsChanged = insertUserData($username, $email, $password, $type);
 		if ($rowsChanged == 0) {
-		  $message = '<p>There was an error, please try again.</p>';
+		  $$_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'signup.php';
 		  exit;
 		}
@@ -109,7 +101,7 @@ switch ($action){
 		  include 'update_quote.php';
 		  exit;
 	    }
-		$message = '<p>The quote has successfully updated</p>';	 
+		$_SESSION['message'] = '<p>The quote has successfully updated</p>';	 
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'addQuote':
@@ -120,13 +112,13 @@ switch ($action){
 		 $authorid = filter_input(INPUT_POST, 'authorid', FILTER_SANITIZE_NUMBER_INT);
 		 $quote = filter_input(INPUT_POST, 'quote', FILTER_SANITIZE_STRING);
 	  	if (empty($category_id) || empty($authorid) || empty($quote)) {
-		  $message = '<p>Please fill in each input field.</p>';
+		  $_SESSION['message'] = '<p>Please fill in each input field.</p>';
 		  include 'add_quote.php';
 		  exit;
       	}
 		$rowsChanged = insertNewQuote($category_id, $authorid, $quote);
 		if ($rowsChanged == 0) {
-		  $message = '<p>There was an error, please try again.</p>';
+		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'add_quote.php';
 		  exit;
 		}
@@ -139,13 +131,13 @@ switch ($action){
 	case 'createCategory':
 	   $category_name = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_STRING);
 	  if (empty($category_name)) {
-		  $message = '<p>Please fill in each input field.</p>';
+		  $_SESSION['message'] = '<p>Please fill in each input field.</p>';
 		  include 'add_category.php';
 		  exit;
       }
 	  $rowsChanged = insertNewCategory($category_name);
 		if ($rowsChanged == 0) {
-		  $message = '<p>There was an error, please try again.</p>';
+		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'add_category.php';
 		  exit;
 		}
@@ -163,11 +155,11 @@ switch ($action){
 	  	$category_name = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_STRING);
 		$rowsChanged = updateCategory($category_id, $category_name);
 	  	if ($rowsChanged < 1) {
-		  $message = '<p>There was an error, please try again.</p>';
+		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'update_category.php';
 		  exit;
 	    }
-		$message = '<p>The category has successfully updated</p>';
+		$_SESSION['message'] = '<p>The category has successfully updated</p>';
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'addAuthor':
@@ -176,13 +168,13 @@ switch ($action){
 	case 'createAuthor':
 	  	   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 	  if (empty($name)) {
-		  $message = '<p>Please fill in the input field.</p>';
+		  $_SESSION['message'] = '<p>Please fill in the input field.</p>';
 		  include 'add_author.php';
 		  exit;
       }
 	  $rowsChanged = insertNewAuthor($name);
 		if ($rowsChanged == 0) {
-		  $message = '<p>There was an error, please try again.</p>';
+		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'add_author.php';
 		  exit;
 		}
@@ -200,11 +192,11 @@ switch ($action){
 	  	$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 		$rowsChanged = updateAuthor($author_id, $name);
 	  	if ($rowsChanged == 0) {
-		  $message = '<p>There was an error, please try again.</p>';
+		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'update_author.php';
 		  exit;
 	    }
-		$message = '<p>The author has successfully updated</p>';
+		$_SESSION['message'] = '<p>The author has successfully updated</p>';
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'deleteCategory':
@@ -213,7 +205,7 @@ switch ($action){
 		if ($rowsChanged < 1) {
 				  $message = '<p>There was an error, please try again</p>'; 
 			}
-		  $message = '<p>The category was successfully deleted</p>';	 
+		  $_SESSION['message'] = '<p>The category was successfully deleted</p>';	 
 		  include 'manage_quotes.php';
 		  break;
 	case 'deleteAuthor':
@@ -222,7 +214,7 @@ switch ($action){
 		if ($rowsChanged < 1) {
 				  $message = '<p>There was an error, please try again</p>'; 
 			}
-		  $message = '<p>The author was successfully deleted</p>';
+		  $_SESSION['message'] = '<p>The author was successfully deleted</p>';
 		  include 'manage_quotes.php';
 		  break;
 	case 'deleteQuote':
@@ -231,7 +223,7 @@ switch ($action){
 		if ($rowsChanged < 1) {
 				  $message = '<p>There was an error, please try again</p>'; 
 			}
-		  $message = '<p>The quote was successfully deleted</p>';
+		  $_SESSION['message'] = '<p>The quote was successfully deleted</p>';
 		  include 'manage_quotes.php';
 		  break;
 }

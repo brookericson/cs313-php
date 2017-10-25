@@ -1,18 +1,7 @@
 <?php 
 
 function getQuotesByCategory($category_id){
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
-
+	$db = get_db();
 	$stmt = $db->prepare('SELECT * FROM quote q JOIN author a ON q.authorid = a.author_id WHERE category_id=:category_id');
 	$stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -21,17 +10,7 @@ function getQuotesByCategory($category_id){
 }
 
 function getQuotesByAuthor($author_id){
-	try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('SELECT * FROM quote q JOIN author a ON q.authorid = a.author_id WHERE authorid=:author_id');
 	$stmt->bindValue(':author_id', $author_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -40,17 +19,7 @@ function getQuotesByAuthor($author_id){
 }
 
 function getQuoteInfo($quote_id){
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('SELECT * FROM quote q JOIN author a ON q.authorid = a.author_id JOIN category c ON q.category_id = c.category_id  WHERE quote_id=:quote_id');
 	$stmt->bindValue(':quote_id', $quote_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -64,17 +33,7 @@ function checkPassword($password){
 }
 
 function getUserData($email){
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('SELECT * FROM public.user WHERE email=:email');
 	$stmt->bindValue(':email', $email, PDO::PARAM_STR);
 	$stmt->execute();
@@ -83,17 +42,7 @@ function getUserData($email){
 }
 
 function getAuthorInfo($author_id){
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('SELECT * FROM author WHERE author_id=:author_id');
 	$stmt->bindValue(':author_id', $author_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -102,17 +51,7 @@ function getAuthorInfo($author_id){
 }
 
 function getCategoryInfo($category_id){
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('SELECT * FROM category WHERE category_id=:category_id');
 	$stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -121,17 +60,7 @@ function getCategoryInfo($category_id){
 }
 
 function insertUserData($username, $email, $password, $type){
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('INSERT INTO public.user (user_name, email, password, type) VALUES (:username, :email, :password, :type)');
 	$stmt->bindValue(':email', $email, PDO::PARAM_STR);
 	$stmt->bindValue(':username', $username, PDO::PARAM_STR);
@@ -144,17 +73,7 @@ function insertUserData($username, $email, $password, $type){
 }
 
 function insertNewCategory($category_name) {
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('INSERT INTO category (category_name) VALUES (:category_name)');
 	$stmt->bindValue(':category_name', $category_name, PDO::PARAM_STR);
 	$stmt->execute();
@@ -164,17 +83,7 @@ function insertNewCategory($category_name) {
 }
 
 function insertNewQuote($category_id, $authorid, $quote) {
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('INSERT INTO quote (category_id, authorid, quote) VALUES (:category_id, :authorid, :quote)');
 	$stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
 	$stmt->bindValue(':authorid', $authorid, PDO::PARAM_INT);
@@ -186,17 +95,7 @@ function insertNewQuote($category_id, $authorid, $quote) {
 }
 
 function insertNewAuthor($name){
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('INSERT INTO author (name) VALUES (:name)');
 	$stmt->bindValue(':name', $name, PDO::PARAM_STR);
 	$stmt->execute();
@@ -206,17 +105,7 @@ function insertNewAuthor($name){
 }
 
 function deleteCategory($category_id) {
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('DELETE FROM category WHERE category_id=:category_id');
 	$stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -226,17 +115,7 @@ function deleteCategory($category_id) {
 }
 
 function deleteAuthor($author_id){			
-	try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('DELETE FROM author WHERE author_id=:author_id');
 	$stmt->bindValue(':author_id', $author_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -246,17 +125,7 @@ function deleteAuthor($author_id){
 }
 
 function deleteQuote($quote_id){
-		try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('DELETE FROM quote WHERE quote_id=:quote_id');
 	$stmt->bindValue(':quote_id', $quote_id, PDO::PARAM_INT);
 	$stmt->execute();
@@ -266,17 +135,7 @@ function deleteQuote($quote_id){
 }
 
 function updateQuote($quote_id, $category_id, $authorid, $quote){
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('UPDATE quote SET category_id = :category_id, authorid = :authorid, quote = :quote WHERE quote_id=:quote_id');
 	$stmt->bindValue(':quote_id', $quote_id, PDO::PARAM_INT);
 	$stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
@@ -289,17 +148,7 @@ function updateQuote($quote_id, $category_id, $authorid, $quote){
 }
 
 function updateAuthor($author_id, $name){
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('UPDATE author SET name = :name WHERE author_id=:author_id');
 	$stmt->bindValue(':author_id', $author_id, PDO::PARAM_INT);
 	$stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -310,17 +159,7 @@ function updateAuthor($author_id, $name){
 }
 
 function updateCategory($category_id, $category_name){
-			try
-	{
-  	$user = 'postgres';
-  	$password = 'Flatirons11';
-  	$db = new PDO('pgsql:host=127.0.0.1;dbname=quotes', $user, 	$password);
-	}
-	catch (PDOException $ex)
-	{
-  	echo 'Error!: ' . $ex->getMessage();
-	die();
-	}
+	$db = get_db();
 	$stmt = $db->prepare('UPDATE category SET category_name = :category_name WHERE category_id=:category_id');
 	$stmt->bindValue(':category_id', $category_id, PDO::PARAM_INT);
 	$stmt->bindValue(':category_name', $category_name, PDO::PARAM_STR);

@@ -12,7 +12,7 @@
 			<form action='index.php' method='post'>
 				<div class="form-group">
 				<label>Category</label>
-				<select name="category_id" class="form-control">
+				<select name="category_id" class="form-control" required>
 						<?php 
 							foreach ($db->query('SELECT * FROM category;') as $category)
 							{
@@ -27,7 +27,7 @@
 				</div>
 				<div class="form-group">
 				<label>Author</label>
-				<select name="authorid" class="form-control">
+				<select name="authorid" class="form-control" required>
 				<?php 
 					foreach ($db->query('SELECT * FROM author;') as $author)
 					{
@@ -42,7 +42,7 @@
 				</div>
 				<div class="form-group">
 				<label>Quote Text:</label>
-				<textarea name="quote" class="form-control"></textarea>
+				<textarea name="quote" class="form-control" required></textarea>
 				</div>
 				<input type="hidden" name="action" value="createQuote">
 				<input type="submit" value="Create Quote" class="btn btn-primary">

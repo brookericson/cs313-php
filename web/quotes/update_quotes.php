@@ -12,7 +12,7 @@
 			<form action='index.php' method='post'>
 				<div class="form-group">
 				<label>Category</label>
-				<select name="category_id" class="form-control" >
+				<select name="category_id" class="form-control" required>
 						<?php 
 					
 							if(isset($_SESSION['quoteInfo'])){
@@ -36,7 +36,7 @@
 				</div>
 				<div class="form-group">
 				<label>Author</label>
-				<select name="authorid" class="form-control">
+				<select name="authorid" class="form-control" required>
 					<?php 
 						if(isset($_SESSION['quoteInfo'])){
 								echo '<option value=';
@@ -59,13 +59,13 @@
 				</div>
 				<div class="form-group">
 				<label>Quote Text:</label>
-				<textarea name="quote" class="form-control"><?php 
+				<textarea name="quote" class="form-control" required><?php 
 						if(isset($_SESSION['quoteInfo'])){
 								echo $_SESSION['quoteInfo']['quote'];
 							} ?>
 			    </textarea>
 				</div>
-				<input type="hidden" name="action" value="UpdateQuote">
+				<input type="hidden" name="action" value="UpdateQuote" required>
 				<?php if(isset($_SESSION['quoteInfo'])){ 
 						echo "<input type='hidden' name='quote_id' value=";
 						echo $_SESSION['quoteInfo']['quote_id'];

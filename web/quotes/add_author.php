@@ -12,7 +12,7 @@
 			<form action='index.php' method='post'>
 				<div class="form-group">
 				<label>Author Name</label>
-				<input type="text" name="name" class="form-control">
+				<input type="text" name="name" class="form-control" required>
 				</div>
 				<input type="hidden" name="action" value="createAuthor">
 				<input type="submit" value="Create Author" class="btn btn-primary">

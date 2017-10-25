@@ -20,7 +20,7 @@
 				<?php if(isset($_SESSION['categoryInfo'])){ 
 						echo "<input type='hidden' name='category_id' value=";
 						echo $_SESSION['categoryInfo']['category_id'];
-						echo ">";
+						echo " required>";
 				} ?>
 				<input type="hidden" name="action" value="UpdateCategory">
 				<input type="submit" value="Update Category" class="btn btn-primary">

@@ -12,7 +12,7 @@
 			<form action='index.php' method='post'>
 				<div class="form-group">
 				<label>Category Name</label>
-				<input type="text" name="category_name" class="form-control">
+				<input type="text" name="category_name" class="form-control" required>
 				</div>
 				<input type="hidden" name="action" value="createCategory">
 				<input type="submit" value="Create Category" class="btn btn-primary">

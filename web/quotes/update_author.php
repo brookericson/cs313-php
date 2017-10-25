@@ -20,7 +20,7 @@
 				<?php if(isset($_SESSION['authorInfo'])){ 
 						echo "<input type='hidden' name='author_id' value=";
 						echo $_SESSION['authorInfo']['author_id'];
-						echo ">";
+						echo " required>";
 				} ?>
 				<input type="hidden" name="action" value="UpdateAuthor">
 				<input type="submit" value="Update Author" class="btn btn-primary">

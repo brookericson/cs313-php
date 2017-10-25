@@ -12,11 +12,11 @@
 			<form action='index.php' method='post'>
 				<div class="form-group">
 				<label>Email</label>
-				<input type="text" name="email" class="form-control">
+				<input type="text" name="email" class="form-control" required>
 				</div>
 				<div class="form-group">
 				<label>Password</label>
-			    <input type="text" name="password" class="form-control">
+			    <input type="text" name="password" class="form-control" required>
 				</div>
 				<input type="hidden" name="action" value="Login">
 				<input type="submit" value="Login" class="btn btn-default">
