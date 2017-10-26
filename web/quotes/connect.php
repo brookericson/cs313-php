@@ -4,7 +4,7 @@ function get_db() {
 	
 	$db = NULL;
 	try {
-		$dbUrl = getenv('postgres://wycvaegorblkoc:b810f3abfd3a693457802f2a23c953de50aded69bee7e86861cbef9305d73cca@ec2-54-225-192-243.compute-1.amazonaws.com:5432/d5f7q74d40i4bq');
+		$dbUrl = getenv('DATABASE_URL');
 		if (!isset($dbUrl) || empty($dbUrl)) {
 			$dbUrl = "postgres://postgres:Flatirons11@localhost:5432/quotes";
 		}
