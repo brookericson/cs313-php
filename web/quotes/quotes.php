@@ -31,6 +31,7 @@
 		</header>
 		<main>
 			<h1>Find a Quote:</h1>
+			<div class="form-container">
 			<form action='index.php' method='post'>
 				<div class="form-group">
 					<label>By Category:</label>
@@ -72,12 +73,13 @@
 				<input type="hidden" name="action" value="findByAuthor">
 				<input type="submit" value="Search Quotes" class="btn btn-default">
 			</form>
+			</div>
 			<hr>
-			<div class="quote-container row">
+			<div class="quote-container">
 				<?php 
 				  if (isset($quotes)) {
 				 	foreach ($quotes as $quote) {
-					 echo "<div class='quote col-sm-4'>";
+					 echo "<div class='quote'>";
 					 echo $quote['quote'];
 					 echo " <span>- ";
 					 echo $quote['name'];
@@ -87,7 +89,6 @@
 				  }	
 				?>
 			</div>
-			<footer> &copy; 2017 Brooke Ericson</footer>
 		</main>
 	</body>
 </html>

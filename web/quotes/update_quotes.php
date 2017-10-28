@@ -95,7 +95,6 @@
 				} ?>
 				<input type="submit" value="Update Quote" class="btn btn-primary">
 			</form>
-			<footer> &copy; 2017 Brooke Ericson</footer>
 		</main>
 	
 	</body>

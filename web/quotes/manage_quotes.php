@@ -107,6 +107,5 @@
 			</table>
 			
 		</main>
-		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
 </html>

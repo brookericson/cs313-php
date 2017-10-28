@@ -7,36 +7,66 @@ body {
 	font-family: 'Arial', sans-serif;
 }
 
+.main-body {
+	background: URL(../images/clay-knight-185427.jpg) no-repeat center;
+	background-size: cover;
+}
+
 header nav ul li {
 	padding-left: 25px;
 }
 
 main {
-	height: 100%;
 	padding: 20px;
 }
 
+h1 {
+	max-width: 500px;
+	margin: auto !important;
+}
+
 .main-quote {
-	font-size: 2em;
-	width: 90%;
-	margin: 40px auto;
-	padding: 30px;
-	background: whitesmoke;
-	border: 1px solid slategray;
-	border-radius: 10px;
+	width: 95%;
+	max-width: 700px;
+	margin: auto;
+	font-size: 3em;
+	background: rgba(255,255,255, 0.7);
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	flex-flow: column;
 }
 
 .main-quote span {
 	font-size: .4em;
+	padding: 15px;
+}
+
+.quote-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }
 
 .quote {
-	background: whitesmoke;
-	margin: 20px;
+	border: 1px slategray solid;
+	width:95%;
+	max-width: 500px;
+	margin: 15px;
 	padding: 30px;
-	border: 1px solid slategray;
-	border-radius: 10px;
+	text-align: center;
 	font-size: 2em;
+	align-items: center;
+}
+
+.link {
+	max-width: 500px;
+	margin: auto;
+	padding: 10px 0;
+}
+
+.account-heading{
+	margin:0;
 }
 a:link {
 	text-decoration: none;
@@ -44,4 +74,19 @@ a:link {
 
 form {
 max-width: 500px;
+margin: auto;
+}
+
+footer {
+	width: 100%;
+	background: whitesmoke;
+}
+
+
+@media screen and (min-width: 750px){
+	.main-quote {
+	font-size: 4em;
+	padding: 50px;
+}
+
 }

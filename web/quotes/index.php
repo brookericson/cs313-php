@@ -56,13 +56,11 @@ switch ($action){
 	  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 	  $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 	  if (empty($email) || empty($password) || empty($username)) {
-		  $$_SESSION['message'] = '<p>Please fill in each input field.</p>';
 		  include 'signup.php';
 		  exit;
       }
 	  $rowsChanged = insertUserData($username, $email, $password, $type);
 		if ($rowsChanged == 0) {
-		  $$_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'signup.php';
 		  exit;
 		}
@@ -97,11 +95,9 @@ switch ($action){
 	  $quote = filter_input(INPUT_POST, 'quote', FILTER_SANITIZE_STRING);
 	  $rowsChanged = updateQuote($quote_id, $category_id, $authorid, $quote);
 	  if ($rowsChanged < 1) {
-		  $message = '<p>There was an error, please try again.</p>';
 		  include 'update_quote.php';
 		  exit;
 	    }
-		$_SESSION['message'] = '<p>The quote has successfully updated</p>';	 
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'addQuote':
@@ -112,17 +108,14 @@ switch ($action){
 		 $authorid = filter_input(INPUT_POST, 'authorid', FILTER_SANITIZE_NUMBER_INT);
 		 $quote = filter_input(INPUT_POST, 'quote', FILTER_SANITIZE_STRING);
 	  	if (empty($category_id) || empty($authorid) || empty($quote)) {
-		  $_SESSION['message'] = '<p>Please fill in each input field.</p>';
 		  include 'add_quote.php';
 		  exit;
       	}
 		$rowsChanged = insertNewQuote($category_id, $authorid, $quote);
 		if ($rowsChanged == 0) {
-		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'add_quote.php';
 		  exit;
-		}
-	  	$message = '<p>The quote has successfully been added</p>';	 
+		} 
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'addCategory':
@@ -131,17 +124,14 @@ switch ($action){
 	case 'createCategory':
 	   $category_name = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_STRING);
 	  if (empty($category_name)) {
-		  $_SESSION['message'] = '<p>Please fill in each input field.</p>';
 		  include 'add_category.php';
 		  exit;
       }
 	  $rowsChanged = insertNewCategory($category_name);
 		if ($rowsChanged == 0) {
-		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'add_category.php';
 		  exit;
-		}
-	  $message = '<p>'.$category_name.' has successfully been added</p>';	 
+		} 
 	  include 'manage_quotes.php';
 	  break;
 	case 'updateCategory':
@@ -155,11 +145,9 @@ switch ($action){
 	  	$category_name = filter_input(INPUT_POST, 'category_name', FILTER_SANITIZE_STRING);
 		$rowsChanged = updateCategory($category_id, $category_name);
 	  	if ($rowsChanged < 1) {
-		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'update_category.php';
 		  exit;
 	    }
-		$_SESSION['message'] = '<p>The category has successfully updated</p>';
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'addAuthor':
@@ -168,17 +156,14 @@ switch ($action){
 	case 'createAuthor':
 	  	   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 	  if (empty($name)) {
-		  $_SESSION['message'] = '<p>Please fill in the input field.</p>';
 		  include 'add_author.php';
 		  exit;
       }
 	  $rowsChanged = insertNewAuthor($name);
 		if ($rowsChanged == 0) {
-		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'add_author.php';
 		  exit;
-		}
-	  $message = '<p>'.$name.' has successfully been added</p>';	 
+		}	 
 	  include 'manage_quotes.php';
 	  break;
 	case 'updateAuthor':
@@ -192,11 +177,9 @@ switch ($action){
 	  	$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 		$rowsChanged = updateAuthor($author_id, $name);
 	  	if ($rowsChanged == 0) {
-		  $_SESSION['message'] = '<p>There was an error, please try again.</p>';
 		  include 'update_author.php';
 		  exit;
 	    }
-		$_SESSION['message'] = '<p>The author has successfully updated</p>';
 	  	include 'manage_quotes.php';
 	  	break;
 	case 'deleteCategory':
@@ -204,8 +187,7 @@ switch ($action){
 		$rowsChanged = deleteCategory($category_id);
 		if ($rowsChanged < 1) {
 				  $message = '<p>There was an error, please try again</p>'; 
-			}
-		  $_SESSION['message'] = '<p>The category was successfully deleted</p>';	 
+			}	 
 		  include 'manage_quotes.php';
 		  break;
 	case 'deleteAuthor':
@@ -214,7 +196,6 @@ switch ($action){
 		if ($rowsChanged < 1) {
 				  $message = '<p>There was an error, please try again</p>'; 
 			}
-		  $_SESSION['message'] = '<p>The author was successfully deleted</p>';
 		  include 'manage_quotes.php';
 		  break;
 	case 'deleteQuote':
@@ -223,7 +204,6 @@ switch ($action){
 		if ($rowsChanged < 1) {
 				  $message = '<p>There was an error, please try again</p>'; 
 			}
-		  $_SESSION['message'] = '<p>The quote was successfully deleted</p>';
 		  include 'manage_quotes.php';
 		  break;
 }

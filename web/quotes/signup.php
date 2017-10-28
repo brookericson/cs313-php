@@ -42,7 +42,7 @@
 				</div>
 				<div class="form-group">
 				<label>Password</label>
-			    <input type="text" name="password" class="form-control" required>
+			    <input type="password" name="password" class="form-control" required>
 				</div>
 				<input type="hidden" value="2" name="type" required> 
 				<input type="hidden" name="action" value="Signup">
@@ -50,6 +50,5 @@
  			</form>
 			<p>Don't have an account? Sign Up <a href="index.php?action=signup">here</a></p>
 		</main>
-		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
 </html>

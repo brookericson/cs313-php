@@ -10,7 +10,7 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
-	<body>
+	<body class="main-body">
 		<header>
 			<nav class="navbar navbar-default">
 				<div class="continer-fluid">
@@ -34,6 +34,5 @@
 			</div>
 			
 		</main>
-		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
 </html>

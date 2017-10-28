@@ -48,6 +48,5 @@
 				<input type="submit" value="Update Category" class="btn btn-primary">
 			</form>
 		</main>
-		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
 </html>

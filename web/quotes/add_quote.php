@@ -70,6 +70,5 @@
 				<input type="submit" value="Create Quote" class="btn btn-primary">
 			</form>
 		</main>
-		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
 </html>

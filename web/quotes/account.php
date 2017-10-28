@@ -31,7 +31,7 @@
 		</header>
 		<main>
 			<div>
-				<h1>Account Information:</h1>
+				<h2>Account Information:</h2>
 				<?php if(isset($_SESSION['userData'])) {
 				echo "<p>Name: ";
 				echo $_SESSION['userData']['user_name'];
@@ -51,6 +51,5 @@
 			}	
 			?>
 		</main>
-		<footer> &copy; 2017 Brooke Ericson</footer>
 	</body>
 </html>
