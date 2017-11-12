@@ -22,7 +22,7 @@
 					<ul>
 					<li><a href="shopping_cart/index.php">Shopping Cart Assignment</a></li>
 					<li><a href="quotes/index.php">05 Prove: Assignment-PHP Data Access</a></li>
-					<li><a href="myapp">Postal Rate Calculator</a></li>
+					<li><a href="myapp/">Postal Rate Calculator</a></li>
 					</ul>
 		</main> 
     </body>
