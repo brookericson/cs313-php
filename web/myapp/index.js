@@ -10,13 +10,15 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
+app.get('/index.js', function(request, response) {
   response.render('form');
 });
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+console.log(url);
 
 app.get('/postage', function(request, response) {
 	handlePostage(request, response);
